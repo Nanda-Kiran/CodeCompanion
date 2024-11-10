@@ -7,3 +7,9 @@ __pycache__/
 
 # VSCode settings
 .vscode/
+
+# Ignore Terraform state and lock files
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
