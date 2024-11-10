@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins="*", supports_credentials=True)
+
 
 # Set up your Gemini API key as an environment variable
 genai.configure(api_key="AIzaSyAqhI3u0jOec1sw10CHmbdaPwf4lqfz-jg")
@@ -30,7 +33,10 @@ def generate_hint():
         f"The question is: {question_text}\n\n"
         f"Analyze the following {language} code and provide a hint to guide the user towards a solution.\n"
         f"Do not give away the full answer, just a hint based on what is written.\n"
-        f"Hint Level {hint_level}:\n{user_code if user_code else 'No code provided'}"
+        f"Hint Level 1: Offer a gentle nudge to get the user thinking in the right direction, focusing on general concepts or methods.\n"
+        f"Hint Level 2: Give more specific guidance, mentioning a potential approach or function to consider without revealing exact implementation details.\n"
+        f"Hint Level 3: Provide guidance that is close to a solution, giving enough detail for the user to easily write the code with minimal guesswork.\n\n"
+        f"User's current Hint Level {hint_level}:\n{user_code if user_code else 'No code provided'}"
     )
 
     try:

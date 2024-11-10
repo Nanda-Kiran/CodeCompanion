@@ -7,10 +7,11 @@ resource "google_cloud_run_service" "flask_api" {
   name     = "flask-api"
   location = var.region
 
+
   template {
     spec {
       containers {
-        image = "us-central1-docker.pkg.dev/promising-rock-441323-e2/hackumass/llm-api:latest"
+        image = "us-central1-docker.pkg.dev/promising-rock-441323-e2/hackumass/llm-api:final"
         ports {
           container_port = 8080
         }
