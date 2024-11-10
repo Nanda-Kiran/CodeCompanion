@@ -1,0 +1,24 @@
+
+services:
+  backend:
+    build:
+      context: ./hackumass   # Path to the backend directory
+    ports:
+      - "8080:8080"        # Expose backend on localhost:8080
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./Frontend_HackUMass/pair-programming-app  # Path to the frontend directory
+    ports:
+      - "4000:80"          # Map frontend container's port 80 to localhost:3000
+    depends_on:
+      - backend            # Ensure backend starts before frontend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
