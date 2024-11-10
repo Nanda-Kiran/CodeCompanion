@@ -1,0 +1,242 @@
+.question-detail {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .question-info {
+    width: 30%;
+    padding: 15px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .question-info h2 {
+    font-family: 'Roboto', Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #1D4E89; /* Dark Royal Blue */
+  margin-bottom: 10px;
+  }
+  
+  .coding-space {
+    width: 70%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .coding-space h3 {
+    color: #333;
+  }
+  
+  .run-code-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .run-code-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .output {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .output h4 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .output pre {
+    font-family: monospace;
+    color: #333;
+    white-space: pre-wrap;
+  }
+  .question-detail {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .question-info {
+    width: 30%;
+    padding: 15px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .question-info h2 {
+    color: #333;
+    font-size: 1.8em;
+  }
+  
+  .coding-space {
+    width: 90%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .coding-space h3 {
+    color: #333;
+  }
+  
+  #language-select {
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 1em;
+    width:fit-content;
+  }
+  .language-select{
+    display:flex;
+    flex-direction: column;
+  }
+  .HintBtn{
+    width:60px;
+    height:fit-content;
+  }
+  .AskBtn{
+    width:fit-content;
+    height:fit-content;
+    color:white;
+  }
+  .Hint{
+    display: flex; 
+    justify-content: space-between;
+
+  }
+  .run-code-button {
+    padding: 10px;
+    font-size: 1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 4%;
+  }
+  
+  .run-code-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .output {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .output h4 {
+    margin: 0;
+    color: #cfc3c3;
+  }
+  
+  .output pre {
+    font-family: monospace;
+    color: #cfc3c3;
+    white-space: pre-wrap;
+  }
+  .coding-space {
+    overflow: hidden;
+  }
+  /* Hint Box Styling */
+.hint-box {
+    position: absolute;
+    top: 120px; /* Adjust position as needed */
+    right: 30px; /* Adjust position as needed */
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+    z-index: 10;
+  }
+  
+  .hint-box p {
+    margin: 0;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .response-box {
+    
+    white-space: pre-wrap; /* Wraps text and maintains spacing/line breaks */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow-y: auto; /* Allows vertical scrolling if content exceeds height */
+    
+  }
+  .button-style {
+    display: inline-block;
+    padding: 8px;
+    height:fit-content;
+    background-color: #50ead1;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-left: 50px;
+  }
+  
+  .button-style:hover {
+    background-color: #005bb5;
+  }
+  
+  .Para {
+    font-family: 'Roboto', Arial, sans-serif;
+  font-size: 16px;
+  color: #4A4A4A; /* Slate Gray */
+  line-height: 1.6;
+  margin-bottom: 15px;
+  }
+  .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  textarea {
+    resize: none; /* Prevents resizing to maintain the layout */
+    overflow-wrap: break-word; /* Ensures long words break to the next line */
+  }
+  .question-detail {
+    display: flex;
+    transition: margin-right 0.3s ease;
+  }
+  
+  .hint-aside {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    width: 20vw;
+    height: auto;
+    background-color: #f9f9f9;
+    padding: 20px
+  }
+
+  .send-button{
+    margin-bottom: 2%;
+  }
+  .api-response-container{
+    white-space: pre-wrap; /* Wraps text and maintains spacing/line breaks */
+    border: 0px solid #ddd;
+    border-radius: 5px;
+    overflow-y: auto;
+  }
