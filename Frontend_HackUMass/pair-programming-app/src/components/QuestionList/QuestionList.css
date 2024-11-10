@@ -1,0 +1,44 @@
+.question-list{
+    padding: 20px;
+    background-size:auto;
+    background-color: #31333e
+    
+}
+
+.difficont{
+  background-color: antiquewhite;
+  border-width: 1px;
+  border-radius: 12px;
+  padding: 3px;
+}
+
+.question-list h2 {
+  font-size: 1.8em;
+  color: #333;
+  text-align: center;
+}
+
+.question-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; /* To ensure there's no unwanted margin around the list */
+}
+
+.question-list li {
+  margin: 10px 0;
+  padding: 7px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #bdc5f1;
+  transition: background-color 0.3s ease; /* Smooth transition effect on hover */
+}
+
+.question-list li:hover {
+  background-color: #f1f1f1;
+}
+
+.question{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
