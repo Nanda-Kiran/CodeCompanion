@@ -1,0 +1,15 @@
+# macOS specific files
+.DS_Store
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# VSCode settings
+.vscode/
+
+# Ignore Terraform state and lock files
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
