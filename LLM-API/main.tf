@@ -19,6 +19,10 @@ resource "google_cloud_run_service" "flask_api" {
           name  = "FLASK_ENV"
           value = "production"
         }
+        env {
+          name  = "GEMINI_API_KEY"
+          value = var.gemini_api_key
+        }
       }
     }
   }

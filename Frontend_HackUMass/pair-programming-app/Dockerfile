@@ -12,7 +12,9 @@ RUN npm install
 # Copy the rest of the application source code
 COPY . .
 
-# Build the React app for production
+# Build the React app for production (CRA inlines REACT_APP_* variables at build time)
+ARG REACT_APP_FIREBASE_API_KEY
+ENV REACT_APP_FIREBASE_API_KEY=$REACT_APP_FIREBASE_API_KEY
 RUN npm run build
 
 # Stage 2: Use Nginx to serve the static files

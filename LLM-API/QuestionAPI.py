@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
+import os
 
 app = Flask(__name__)
 
-# Set up your API key directly
-genai.configure(api_key="AIzaSyAqhI3u0jOec1sw10CHmbdaPwf4lqfz-jg")  # Replace with your actual API key
+# Read the Gemini API key from the environment
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
 @app.route('/api/answer-question', methods=['POST'])
 def answer_question():

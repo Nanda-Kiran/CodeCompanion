@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDoz7Sk95LbvNMJFQLQlQuzGij3j_ePQcM",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "hackumass-2266d.firebaseapp.com",
     projectId: "hackumass-2266d",
     storageBucket: "hackumass-2266d.firebasestorage.app",

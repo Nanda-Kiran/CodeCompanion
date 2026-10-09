@@ -3,6 +3,8 @@ services:
   backend:
     build:
       context: ./hackumass   # Path to the backend directory
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
     ports:
       - "8080:8080"        # Expose backend on localhost:8080
     networks:
@@ -11,6 +13,8 @@ services:
   frontend:
     build:
       context: ./Frontend_HackUMass/pair-programming-app  # Path to the frontend directory
+      args:
+        - REACT_APP_FIREBASE_API_KEY=${REACT_APP_FIREBASE_API_KEY}
     ports:
       - "4000:80"          # Map frontend container's port 80 to localhost:3000
     depends_on:

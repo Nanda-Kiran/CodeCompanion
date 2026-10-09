@@ -31,11 +31,15 @@ React app (Monaco, Pyodide, Firebase Auth)
 
 ## Running it
 
-You need your own Gemini API key, MongoDB database and Firebase project, with the Email/Password sign-in provider enabled. Put your values in these files, and keep your copies out of version control:
+You need your own Gemini API key, MongoDB database and Firebase project, with the Email/Password sign-in provider enabled. The code reads credentials from environment variables; none are stored in the repo:
 
-- `LLM-API/PromptAPI.py`: `genai.configure(api_key=...)`
-- `hackumass/src/main/resources/application.properties`: `spring.data.mongodb.uri`. The service reads the database named in this URI, so end it with `/hackumass` to match the restore command below.
-- `Frontend_HackUMass/pair-programming-app/src/firebase.js`: `firebaseConfig`
+| Variable | Used by |
+|---|---|
+| `GEMINI_API_KEY` | LLM service (`LLM-API/PromptAPI.py`) |
+| `MONGODB_URI` | Question service (`application.properties`). End the URI with `/hackumass` to match the restore command below. |
+| `REACT_APP_FIREBASE_API_KEY` | Frontend (`src/firebase.js`), read at build time. Set `authDomain`, `projectId` and the rest of `firebaseConfig` to your own project. |
+
+Docker Compose reads `MONGODB_URI` and `REACT_APP_FIREBASE_API_KEY` from your shell or from a `.env` file in the repo root, which `.gitignore` excludes.
 
 Load the problem set. This needs the MongoDB Database Tools:
 
@@ -50,6 +54,7 @@ The Dockerfile uses Python 3.9.
 ```bash
 cd LLM-API
 pip install -r requirements.txt
+export GEMINI_API_KEY=<your-key>
 python PromptAPI.py            # serves on :8080
 ```
 
@@ -64,10 +69,10 @@ To deploy to Cloud Run:
 ```bash
 cd LLM-API
 terraform init
-terraform apply -var project_id=<your-gcp-project>
+terraform apply -var project_id=<your-gcp-project> -var gemini_api_key=<your-key>
 ```
 
-Terraform prints the service URL as `cloud_run_url`. `main.tf` grants `roles/run.invoker` to `allUsers`, so the deployed service is public.
+Terraform passes the key to the service as `GEMINI_API_KEY`. Terraform prints the service URL as `cloud_run_url`. `main.tf` grants `roles/run.invoker` to `allUsers`, so the deployed service is public.
 
 ### Question service and frontend
 
@@ -75,16 +80,16 @@ Terraform prints the service URL as `cloud_run_url`. `main.tf` grants `roles/run
 docker compose up --build      # question service on :8080, frontend on :4000
 ```
 
-Compose does not start MongoDB or the LLM service. `application.properties` is built into the backend image, so set your MongoDB URI before you build.
+Compose does not start MongoDB or the LLM service. It passes `MONGODB_URI` to the question service at run time and `REACT_APP_FIREBASE_API_KEY` to the frontend build.
 
 You can also run the two services separately, each in its own terminal. Use Java 17 and Node 18, as the Dockerfiles do.
 
 ```bash
-cd hackumass && ./mvnw spring-boot:run
+cd hackumass && MONGODB_URI=<your-mongodb-uri> ./mvnw spring-boot:run
 ```
 
 ```bash
-cd Frontend_HackUMass/pair-programming-app && npm install && npm start   # :3000
+cd Frontend_HackUMass/pair-programming-app && npm install && REACT_APP_FIREBASE_API_KEY=<your-key> npm start   # :3000
 ```
 
 ### Service URLs
@@ -105,7 +110,7 @@ Hackathon prototype, last updated in November 2024 and not maintained. Known gap
 - The UI always requests hint level 1.
 - Pages after login are not auth-guarded.
 - A problem page works only when opened from the list, because the problem is passed through router state. A direct link does not load it.
-- Service URLs and API settings are hardcoded in source files instead of being read from environment variables.
+- Service URLs and model names are hardcoded in source files instead of being read from environment variables.
 
 ## Team
 

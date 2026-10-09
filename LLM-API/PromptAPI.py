@@ -7,8 +7,8 @@ app = Flask(__name__)
 CORS(app, origins="*", supports_credentials=True)
 
 
-# Set up your Gemini API key as an environment variable
-genai.configure(api_key="AIzaSyAqhI3u0jOec1sw10CHmbdaPwf4lqfz-jg")
+# Read the Gemini API key from the environment
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
 @app.route('/api/generate-hint', methods=['POST'])
 def generate_hint():
